@@ -1,0 +1,11 @@
+//
+// Created by Xiaochen Wang on 2017-10-27.
+//
+
+I feel the most comfortable lambda can be used directly with the local temporary variables, write their own function what the transfer will be very troublesome. In particular, when writing multi-threaded, there are variables to capture the words are very simple, not the whole global variables, do not have their own definition of the structure of the pointer.
+
+This week due to the impact of school strikes led to my workshop6 of the above problems can not be resolved immediately so I delayed submitted workshop6, I hope you can understand. In addition, I handed over my quiz6 by email, because during in the quiz my laptop is in blue screen, so I can't give my quiz by blackboard at that times I submitted by email, but I may thought you have not checked yet, I am through this email address(xwang345@myseneca.ca) sent to you the quiz6, I hope you can check.
+
+Thank you
+Xiaochen Wang
+2017-10-27

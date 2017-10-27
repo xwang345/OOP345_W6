@@ -1,0 +1,106 @@
+Script started on Fri 27 Oct 2017 01:52:04 PM EDT
+xwang345@matrix:~/OOP345/OOP345_W6> whoami
+xwang345
+xwang345@matrix:~/OOP345/OOP345_W6> cat w6.cpp Grades.h
+//
+// Created by Xiaochen Wang on 2017-10-27.
+//
+
+// Workshop 6 - Lambda Expression
+// w6.cpp
+
+#include <iostream>
+#include "Grades.h"
+
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        std::cerr << argv[0] <<
+                  ": incorrect number of arguments\n";
+        std::cerr << "Usage: " << argv[0] << " file_name\n";
+        return 1;
+    }
+
+    Grades grades_(argv[1]);
+
+    // define the lambda expression for letter
+    auto letter = [](double grades_)->std::string{
+        std::string letterGrade;
+        if (grades_ >= 90)
+            letterGrade = "A+";
+        else if (grades_ >= 80)
+            letterGrade = "A";
+        else if (grades_ >= 75)
+            letterGrade = "B+";
+        else if (grades_ >= 70)
+            letterGrade = "B";
+        else if (grades_ >= 65)
+            letterGrade = "C+";
+        else if (grades_ >= 60)
+            letterGrade = "C";
+        else if (grades_ >= 55)
+            letterGrade = "D+";
+        else if (grades_ >= 50)
+            letterGrade = "D";
+        else
+            letterGrade = "F";
+        return letterGrade;
+    };
+
+    grades_.displayGrades(std::cout, letter);
+
+    std::cout << "Press any key to continue ... ";
+    std::cin.get();
+}//
+// Created by Xiaochen Wang on 2017-10-27.
+//
+
+#ifndef SICT_GRADES_H
+#define SICT_GRADES_H
+
+// Grades.h
+#pragma once
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+class Grades
+{
+    string* students_;
+    double* grades_;
+    int count_;
+
+public:
+    Grades()
+            : students_(nullptr), grades_(nullptr), count_(0) {}
+
+    Grades(char* file);
+
+    template<typename T>
+    void displayGrades(std::ostream& os, T t) const {
+        for (int i = 0; i < count_; i++)
+            os << students_[i] << " " << grades_[i] << "0" << " " << t(grades_[i]) << endl;
+    }
+
+    Grades(const Grades& g) = delete;
+    Grades(Grades&& g) = delete;
+    Grades& operator=(const Grades& g) = delete;
+    Grades&& operator=(Grades&& g) = delete;
+};
+
+#endif // SICT_GRADES_H
+xwang345@matrix:~/OOP345/OOP345_W6> g++ -std="c++0x" -o w6 w6.cpp
+/tmp/cceTaBI1.o: In function `main':
+w6.cpp:(.text+0x24c): undefined reference to `Grades::Grades(char*)'
+collect2: ld returned 1 exit status
+xwang345@matrix:~/OOP345/OOP345_W6> g++ -std="c++0x" -o w6 w6.cpp[1P[1P[C[C[C[C[C[1@-[1@W[1@a[1@l[1@l[1@ 
+/tmp/ccc2POS9.o: In function `main':
+w6.cpp:(.text+0x24c): undefined reference to `Grades::Grades(char*)'
+collect2: ld returned 1 exit status
+xwang345@matrix:~/OOP345/OOP345_W6> w6 w6.dat
+If 'w6' is not a typo you can use command-not-found to lookup the package that contains it, like this:
+    cnf w6
+xwang345@matrix:~/OOP345/OOP345_W6> exit
+exit
+
+Script done on Fri 27 Oct 2017 01:55:09 PM EDT
